@@ -29,8 +29,8 @@ async function on_room_message(room_id, event) {
         return;
 
     if (event["content"]["body"] == "!ssh toggle") {
-        client.replyText(room_id, event, `Bridge to matrix: ${toggle}`);
         toggle = !toggle;
+        client.replyText(room_id, event, `Bridge to matrix: ${toggle}`);
         return;
     }
 
