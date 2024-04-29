@@ -44,6 +44,8 @@ async function on_room_message(room_id, event) {
 
     dlog(`Matrix -> SSH: ${event["content"]["body"]}`);
 
+    await new Promise(resolve => setTimeout(resolve, 100));
+
     shell.write(
         `${event["sender"]} in ${await client.getPublishedAlias(room_id)}: ${event["content"]["body"]}\r\n`,
     );
@@ -95,12 +97,14 @@ async function main() {
                     client
                         .getJoinedRooms()
                         .then((rooms) => {
-                            rooms.forEach((room_id) => {
+                            rooms.forEach(async (room_id) => {
                                 dlog(`Sending message to ${room_id}...`);
+
+                                await new Promise(resolve => setTimeout(resolve, 100));
 
                                 client
                                     .sendMessage(room_id, {
-                                        msgtype: "m.notice",
+                                        msgtype: "m.text",
                                         body: data,
                                     })
                                     .catch(() => {});
