@@ -8,6 +8,8 @@ import { readFileSync } from "fs";
 let user_id;
 let shell;
 
+let toggle = true;
+
 const client = new MatrixClient(config.homeserver, config.token);
 const ssh = new Client();
 const start = new Date().getTime();
@@ -24,6 +26,12 @@ async function on_room_message(room_id, event) {
         event["sender"] === user_id ||
         !shell
     )
+        return;
+
+    if (event["content"]["m.relates_to"] == "!ssh toggle")
+        toggle = !toggle;
+
+    if (!toggle)
         return;
 
     if (
