@@ -1,0 +1,28 @@
+{
+    "name": "ssh-bot",
+    "version": "1.0.0",
+    "description": "A matrix bot to bridge between ssh-chat and matrix.",
+    "main": "index.mjs",
+    "scripts": {
+        "bot": "node index.mjs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://ari.lt/gh/ssh-bot"
+    },
+    "keywords": [
+        "matrix",
+        "ssh"
+    ],
+    "author": "Ari Archer",
+    "license": "AGPL-3.0-or-later",
+    "devDependencies": {
+        "@eslint/js": "^9.0.0",
+        "eslint": "^9.0.0",
+        "globals": "^15.0.0"
+    },
+    "dependencies": {
+        "matrix-bot-sdk": "^0.7.1",
+        "ssh2": "^1.15.0"
+    }
+}
