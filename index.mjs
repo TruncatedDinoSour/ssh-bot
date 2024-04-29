@@ -37,6 +37,8 @@ async function on_room_message(room_id, event) {
 
         dlog(`Matrix -> SSH: ${evt["content"]["body"]}`);
 
+        await new Promise(resolve => setTimeout(resolve, 100));
+
         shell.write(
             `in reply to ${evt["sender"]}: ${evt["content"]["body"]}:\r\n`,
         );
