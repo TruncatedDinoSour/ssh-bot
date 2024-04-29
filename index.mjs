@@ -28,11 +28,10 @@ async function on_room_message(room_id, event) {
     )
         return;
 
-    if (event["content"]["m.relates_to"] == "!ssh toggle")
+    if (event["content"]["m.relates_to"] == "!ssh toggle") {
         toggle = !toggle;
-
-    if (!toggle)
         return;
+    }
 
     if (
         event["content"]["m.relates_to"] &&
@@ -111,6 +110,9 @@ async function main() {
                                 dlog(`Sending message to ${room_id}...`);
 
                                 await new Promise(resolve => setTimeout(resolve, 100));
+
+                                if (!toggle)
+                                    return;
 
                                 client
                                     .sendMessage(room_id, {
