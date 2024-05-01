@@ -45,7 +45,7 @@ async function on_room_message(room_id, event) {
 
         dlog(`Matrix -> SSH: ${evt["content"]["body"]}`);
 
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 100));
 
         shell.write(
             `in reply to ${evt["sender"]}: ${evt["content"]["body"]}:\r\n`,
@@ -54,10 +54,16 @@ async function on_room_message(room_id, event) {
 
     dlog(`Matrix -> SSH: ${event["content"]["body"]}`);
 
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    let content;
+
+    if (event["content"]["url"])
+        content = `Media ${event["content"]["body"]}: ${client.mxcToHttp(event["content"]["url"])}`;
+    else content = event["content"]["body"];
 
     shell.write(
-        `${event["sender"]} in ${await client.getPublishedAlias(room_id)}: ${event["content"]["body"]}\r\n`,
+        `${event["sender"]} in ${await client.getPublishedAlias(room_id)}: ${content}\r\n`,
     );
 }
 
@@ -110,10 +116,11 @@ async function main() {
                             rooms.forEach(async (room_id) => {
                                 dlog(`Sending message to ${room_id}...`);
 
-                                await new Promise(resolve => setTimeout(resolve, 100));
+                                await new Promise((resolve) =>
+                                    setTimeout(resolve, 100),
+                                );
 
-                                if (!toggle)
-                                    return;
+                                if (!toggle) return;
 
                                 client
                                     .sendMessage(room_id, {
