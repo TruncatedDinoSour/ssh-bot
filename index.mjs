@@ -107,7 +107,7 @@ async function main() {
 
                 data = data.toString().trim();
 
-                if (data[0] == "*" || data.match(/^[a-zA-Z0-9_-]+: .+$/)) {
+                if (data[0] == "*" || data.match(/^[a-zA-Z0-9._-]+: .+$/)) {
                     dlog(`SSH -> Matrix: ${data}`);
 
                     client
