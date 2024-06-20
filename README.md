@@ -1,3 +1,4 @@
+# This repository has been migrated to the self-hosted ari-web Forgejo instance: <https://git.ari.lt/ari/ssh-bot>
 # SSH(-Chat) bot
 
 > A matrix bot to bridge <https://ssh.chat/> :)
